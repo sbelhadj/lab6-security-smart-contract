@@ -41,3 +41,39 @@ myth analyze contracts/VulnerableContract.sol
 ```
 
 ✅ Mythril effectue une analyse avancée des flux d’exécution
+
+
+
+## ✅ Exécution de l’attaque
+### 📌 1️⃣ Installation des dépendances
+```bash
+npm install dotenv web3 fs path
+```
+### 📌 2️⃣ Déployer le contrat vulnérable
+```bash
+node scripts/deploy.js
+```
+### 📌 3️⃣ Lancer l’attaque
+```bash
+node scripts/exploit.js
+```
+💀 Attaque réussie ! Le contrat malveillant a drainé les fonds du contrat vulnérable !
+
+### 🔥 Conclusion et Sécurisation
+####🔹 Pourquoi ça marche ?
+Le contrat VulnerableContract.sol effectue le transfert d’ETH avant de mettre à jour le solde. Le contrat attaquant exploite cette faiblesse en exécutant la fonction fallback() en boucle pour drainer les fonds.
+
+####🔹 Comment corriger cette faille ?
+✅ Mise à jour du solde avant d’envoyer l’ETH
+✅ Utilisation du Checks-Effects-Interactions Pattern
+✅ Ajout d’un modificateur noReentrancy
+
+📌 Voir le fichier contracts/SecureContract.sol pour la version corrigée !
+
+📚 Ressources Supplémentaires
+📖 Documentation Solidity sur la Sécurité : Ethereum Smart Contract Security Best Practices
+📖 Reentrancy Attack Explained : Ethereum.org
+
+🚀 Bravo ! Vous avez exploité une faille et appris à la corriger ! 🔥
+
+
